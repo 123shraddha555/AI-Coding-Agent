@@ -15,3 +15,6 @@ def test_empty_name():
 
 def test_valid_name():
     assert validate_name("Shraddha") is True
+
+def test_invalid_email_format():
+    assert validate_email("invalid-email") is False    

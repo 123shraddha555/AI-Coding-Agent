@@ -6,9 +6,7 @@ from validator import validate_proposed_changes
 from diff_generator import generate_diff
 
 
-# =========================================================
 # PAGE CONFIGURATION
-# =========================================================
 
 st.set_page_config(
     page_title="AI Coding Agent",
@@ -17,10 +15,8 @@ st.set_page_config(
 )
 
 
-# =========================================================
 # SESSION STATE
-# =========================================================
-
+ 
 if "analysis" not in st.session_state:
     st.session_state.analysis = None
 
@@ -28,9 +24,7 @@ if "changes" not in st.session_state:
     st.session_state.changes = None
 
 
-# =========================================================
 # HEADER
-# =========================================================
 
 st.title("AI Coding Agent")
 
@@ -41,9 +35,7 @@ st.write(
 )
 
 
-# =========================================================
 # AGENT SETTINGS
-# =========================================================
 
 st.sidebar.header("Agent Settings")
 
@@ -52,21 +44,12 @@ st.sidebar.info(
 )
 
 
-# =========================================================
 # GEMINI API KEY
-# =========================================================
 
-api_key = st.text_input(
-    "Gemini API Key",
-    type="password",
-    help="Enter your Gemini API key."
-)
+api_key = st.secrets.get("GEMINI_API_KEY")
 
 
-# =========================================================
 # DEVELOPER TASK
-# =========================================================
-
 task = st.text_area(
     "Developer Task",
     value=(
@@ -139,9 +122,8 @@ if st.button(
         )
 
 
-# =========================================================
 # DISPLAY ANALYSIS
-# =========================================================
+
 
 if st.session_state.analysis:
 
@@ -154,9 +136,7 @@ if st.session_state.analysis:
     )
 
 
-# =========================================================
 # PROPOSE CODE CHANGES
-# =========================================================
 
 if st.button(
     "Propose Code Changes",
@@ -220,10 +200,8 @@ if st.button(
         st.stop()
 
 
-# =========================================================
-# DISPLAY PROPOSED CHANGES
-# =========================================================
 
+# DISPLAY PROPOSED CHANGES
 if st.session_state.changes:
 
     changes = st.session_state.changes
@@ -282,10 +260,7 @@ if st.session_state.changes:
             )
 
 
-# =========================================================
 # VALIDATION
-# =========================================================
-
 st.divider()
 
 st.subheader(
@@ -337,10 +312,7 @@ if st.button(
     )
 
 
-# =========================================================
 # FOOTER
-# =========================================================
-
 st.divider()
 
 st.caption(
